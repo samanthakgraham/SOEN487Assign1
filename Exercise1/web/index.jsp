@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>SOEN 487 Assignment 1 Exercise 1</title>
     </head>
     <body>
         <h1>Hello World!</h1>

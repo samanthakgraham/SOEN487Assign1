@@ -7,8 +7,8 @@
 <!-- the Compile on Save feature is turned off for the project. -->
 <!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
 <!-- in the project's Project Properties dialog box.-->
-<project name="Exercise2" default="default" basedir=".">
-    <description>Builds, tests, and runs the project Exercise2.</description>
+<project name="Assign1Exercise2" default="default" basedir=".">
+    <description>Builds, tests, and runs the project Assign1Exercise2.</description>
     <import file="nbproject/build-impl.xml"/>
     <!--
 

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
+  <services>
+    <service name="Manufacturer">
+      <implementation-class>Manufacturer.Manufacturer</implementation-class>
+    </service>
+    <service name="Warehouse">
+      <implementation-class>Warehouse.Warehouse</implementation-class>
+    </service>
+  </services>
+  <clients/>
+</jax-ws>

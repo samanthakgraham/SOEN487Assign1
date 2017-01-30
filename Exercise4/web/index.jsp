@@ -21,17 +21,25 @@
                 </div>
                 <div class="form-group">
                     <input type="checkbox" name="product[]" value="dvd player" /> Brand2 DVD Player
-                    <input type="number" name="dvd-qty" placeholder="Quantity" />
+                    <input type="number" name="dvd player-qty" placeholder="Quantity" />
                 </div>
                 <div class="form-group">
                     <input type="checkbox" name="product[]" value="video camera" /> Brand3 Video Camera
-                    <input type="number" name="video-qty" placeholder="Quantity" />
+                    <input type="number" name="video camera-qty" placeholder="Quantity" />
                 </div>        
                 <div class="form-group">
                     <input type="submit" value="Place Order" class="btn btn-success" />
                 </div>
             </form>
+            <%
+                if((String)request.getAttribute("error") != null) {
+                %>
+                <p class="bg-danger text-danger">
+                    <%=(String)request.getAttribute("error")%>
+                </p>                
+                <%
+            }
+            %>
         </div>
-
     </body>
 </html>

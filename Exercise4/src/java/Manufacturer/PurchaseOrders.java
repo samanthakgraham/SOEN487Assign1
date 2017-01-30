@@ -21,7 +21,7 @@ public class PurchaseOrders {
         return orders;
     }
 
-    public void setProducts(List<PurchaseOrder> orders) {
+    public void setOrders(List<PurchaseOrder> orders) {
         this.orders = orders;
     }
 }

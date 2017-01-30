@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 
-public class Marshalling {
+public class ProductMarshalling {
 
     // Initialize the products list
     static Products products = new Products();
@@ -14,9 +14,9 @@ public class Marshalling {
         products.setProducts(new ArrayList<Product>());
         
         // Create some products
-        Product prod1 = new Product("Sony", "TV", 500);
-        Product prod2 = new Product("Toshiba", "DVD Player", 99);
-        Product prod3 = new Product("Samsung", "video camera", 150);
+        Product prod1 = new Product("Brand1", "TV", 500);
+        Product prod2 = new Product("Brand2", "DVD Player", 99);
+        Product prod3 = new Product("Brand3", "video camera", 150);
         
         // Add them to the list
         products.getProducts().add(prod1);
@@ -28,9 +28,6 @@ public class Marshalling {
         JAXBContext jaxbContext = JAXBContext.newInstance(Products.class);
         Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
         jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-        // Marshal the products list in console
-        jaxbMarshaller.marshal(products, System.out);
 
         // Marshal the products list in file
         jaxbMarshaller.marshal(products, new File("products.xml"));

@@ -12,7 +12,7 @@ import javax.jws.WebParam;
 public class Manufacturer {
 
     /**
-     * Produces the product
+     * Processes a purchase order
      */
     @WebMethod(operationName = "processPurchaseOrder")
     public boolean processPurchaseOrder() {        

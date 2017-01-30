@@ -21,6 +21,7 @@ public class Warehouse {
      */
     @WebMethod(operationName = "shipGoods")
     public List shipGoods(@WebParam(name = "itemList") List itemList) {        
+        replenish();
         return null;
     }
 

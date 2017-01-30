@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ns3:Products xmlns:ns2="http://www.example.com/a" xmlns:ns3="http://www.example.com">
     <ns2:product>
-        <manufacturerName>Sony</manufacturerName>
+        <manufacturerName>Brand1</manufacturerName>
         <productType>TV</productType>
         <unitPrice>500.0</unitPrice>
     </ns2:product>
     <ns2:product>
-        <manufacturerName>Toshiba</manufacturerName>
+        <manufacturerName>Brand2</manufacturerName>
         <productType>DVD Player</productType>
         <unitPrice>99.0</unitPrice>
     </ns2:product>
     <ns2:product>
-        <manufacturerName>Samsung</manufacturerName>
+        <manufacturerName>Brand3</manufacturerName>
         <productType>video camera</productType>
         <unitPrice>150.0</unitPrice>
     </ns2:product>

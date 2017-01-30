@@ -5,9 +5,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import Warehouse.Warehouse;
 import javax.servlet.RequestDispatcher;
 import java.util.ArrayList;
+import java.util.List;
+import Warehouse.Warehouse;
 
 /**
  *
@@ -55,8 +56,12 @@ public class OrderController extends HttpServlet {
                     orderLine[1] = productQuantity;
                     
                     order.add(orderLine);
+                    
+                    // Attempt to ship
+                    Warehouse wr = new Warehouse();
+                    List shippingResultList = wr.shipGoods(order);
                 }
             }
-        }        
+        }
     }
 }

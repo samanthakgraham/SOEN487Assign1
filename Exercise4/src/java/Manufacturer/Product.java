@@ -27,8 +27,8 @@ public class Product {
     private float unitPrice;
     
     public Product() {
-        manufacturerName = "Default";
-        productType = "DVD Player";
+        manufacturerName = "default";
+        productType = "default";
         unitPrice = 0;
     }
     

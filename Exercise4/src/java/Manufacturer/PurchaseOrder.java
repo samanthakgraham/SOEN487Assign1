@@ -17,7 +17,8 @@ import javax.xml.bind.annotation.XmlType;
     "customerRef",
     "product",
     "quantity",
-    "unitPrice"
+    "unitPrice",
+    "paid"
 })
 
 @XmlRootElement(name = "purchaseOrder")
@@ -32,6 +33,8 @@ public class PurchaseOrder {
     private int quantity;
     @XmlElement(required = true)
     private float unitPrice;
+    @XmlElement(required = true)
+    private boolean paid;
     
     public PurchaseOrder() {
         orderNum = "0";
@@ -39,14 +42,16 @@ public class PurchaseOrder {
         product = null;
         quantity = 0;
         unitPrice = 0;
+        paid = false;
     }
     
-    public PurchaseOrder(String order, String customer, Product prod, int qty, float price) {
+    public PurchaseOrder(String order, String customer, Product prod, int qty, float price, boolean paid) {
         this.orderNum = order;
         this.customerRef = customer;
         this.product = prod;
         this.quantity = qty;
         this.unitPrice = price;
+        this.paid = paid;
     }
     
     public String getOrderNum() {
@@ -87,5 +92,13 @@ public class PurchaseOrder {
     
     public void setUnitPrice(float price) {
         this.unitPrice = price;
+    }
+    
+    public boolean getPaidStatus() {
+        return paid;
+    }
+    
+    public void setPaidStatus(boolean paid) {
+        this.paid = paid;
     }
 }

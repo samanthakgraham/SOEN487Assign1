@@ -15,11 +15,11 @@ public class PurchaseOrderMarshalling {
         
         // Create some orders
         Product prod1 = new Product("Brand2", "DVD Player", 75);
-        PurchaseOrder order1 = new PurchaseOrder("1", "1", prod1, 1, 75);
-        PurchaseOrder order2 = new PurchaseOrder("2", "2", prod1, 2, 150);
+        PurchaseOrder order1 = new PurchaseOrder("1", "1", prod1, 1, 75, false);
+        PurchaseOrder order2 = new PurchaseOrder("2", "2", prod1, 2, 150, false);
         
         Product prod2 = new Product("Brand1", "TV", 500);
-        PurchaseOrder order3 = new PurchaseOrder("3", "1", prod2, 1, 500);
+        PurchaseOrder order3 = new PurchaseOrder("3", "1", prod2, 1, 500, false);
         
         orders.getOrders().add(order1);
         orders.getOrders().add(order2);

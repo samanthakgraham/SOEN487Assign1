@@ -51,7 +51,7 @@
 
                 if(!shippedItems.isEmpty()) {
                 %>
-                <h3>The following products were successfully shipped:</h3>
+                <h4>The following products were successfully shipped:</h4>
                 <%
                     for(WarehouseItem item : shippedItems) {
                         String productName = item.getProduct().getManufacturerName() + " " + item.getProduct().getProductType();
@@ -63,7 +63,7 @@
 
                 if(!notShippedItems.isEmpty()) {
                 %>
-                    <h3>The following products could not be shipped due to lack of stock; they have been ordered from the manufacturer:</h3>
+                    <h4>The following products could not be shipped due to lack of stock; they have been ordered from the manufacturer:</h4>
                 <%
                     for(WarehouseItem item : notShippedItems) {
                         String productName = item.getProduct().getManufacturerName() + " " + item.getProduct().getProductType();

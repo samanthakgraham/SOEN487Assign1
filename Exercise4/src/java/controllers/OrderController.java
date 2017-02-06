@@ -57,8 +57,7 @@ public class OrderController extends HttpServlet {
                     try {
                         Manufacturer manu = new Manufacturer();
                         Product productObject = manu.getProductInfo(product);
-                        WarehouseItem wi = new WarehouseItem(productObject, Integer.parseInt(productQuantity));
-                        System.out.println("Adding " + wi.getProduct().getProductType() + " to the order");
+                        WarehouseItem wi = new WarehouseItem(productObject, Integer.parseInt(productQuantity));                        
                         order.add(wi); 
                     } catch(JAXBException e) {
                         System.out.println(e.toString());

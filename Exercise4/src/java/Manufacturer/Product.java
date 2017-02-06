@@ -61,4 +61,8 @@ public class Product {
     public void setUnitPrice(float price) {
         this.unitPrice = price;
     }
+    
+    public boolean equals(Product prod) {
+        return (this.manufacturerName.equals(prod.getManufacturerName()) && this.productType.equals(prod.getProductType()) && this.unitPrice == prod.getUnitPrice());
+    }
 }

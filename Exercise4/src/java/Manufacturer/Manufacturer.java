@@ -2,6 +2,7 @@ package Manufacturer;
 
 import static Manufacturer.PurchaseOrderMarshalling.orders;
 import java.io.File;
+import java.util.ArrayList;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -30,7 +31,7 @@ public class Manufacturer {
         // Get products by unmarshalling the file
         JAXBContext jaxbContextProducts = JAXBContext.newInstance(Products.class);
         Unmarshaller jaxbUnmarshaller = jaxbContextProducts.createUnmarshaller();
-        Products products = (Products) jaxbUnmarshaller.unmarshal(new File("products.xml"));
+        Products products = (Products) jaxbUnmarshaller.unmarshal(new File("C:\\Users\\Kayleigh\\workspace\\scotch-box\\public\\SOEN487\\Assignment1\\Exercise4\\products.xml"));
         
         // Go thru products
         for (Product product : products.getProducts()) {
@@ -49,11 +50,12 @@ public class Manufacturer {
                 if(success) {
                     // Marshal it to the XML file
                     PurchaseOrders ordersToMarshal = new PurchaseOrders();
+                    ordersToMarshal.setOrders(new ArrayList<PurchaseOrder>());
                     ordersToMarshal.getOrders().add(purchaseOrder);
                     JAXBContext jaxbContextPurchaseOrders = JAXBContext.newInstance(PurchaseOrders.class);
                     Marshaller jaxbMarshaller = jaxbContextPurchaseOrders.createMarshaller();
                     jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);                    
-                    jaxbMarshaller.marshal(orders, new File("orders.xml"));
+                    jaxbMarshaller.marshal(ordersToMarshal, new File("C:\\Users\\Kayleigh\\workspace\\scotch-box\\public\\SOEN487\\Assignment1\\Exercise4\\orders.xml"));
                 }
                 
                 // Break out of the for loop

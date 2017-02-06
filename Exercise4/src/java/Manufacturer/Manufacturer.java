@@ -75,12 +75,12 @@ public class Manufacturer {
         // Get the list of products by unmarshalling
         JAXBContext jaxbContext = JAXBContext.newInstance(Products.class);
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-        Products prods = (Products) jaxbUnmarshaller.unmarshal(new File("products.xml"));
+        Products prods = (Products) jaxbUnmarshaller.unmarshal(new File("C:\\Users\\Kayleigh\\workspace\\scotch-box\\public\\SOEN487\\Assignment1\\Exercise4\\products.xml"));
         
         // Go thru the products
         for (Product prod : prods.getProducts()) {
             // If we've found the one we want, return it
-            if(prod.getProductType().equals(productName)) {
+            if(prod.getProductType().toLowerCase().equals(productName.toLowerCase())) {
                 return prod;
             }
         }
@@ -105,7 +105,7 @@ public class Manufacturer {
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
         Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
         jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        PurchaseOrders orders = (PurchaseOrders) jaxbUnmarshaller.unmarshal(new File("orders.xml"));
+        PurchaseOrders orders = (PurchaseOrders) jaxbUnmarshaller.unmarshal(new File("C:\\Users\\Kayleigh\\workspace\\scotch-box\\public\\SOEN487\\Assignment1\\Exercise4\\orders.xml"));
         
         // Go thru orders
         for(PurchaseOrder order: orders.getOrders()) {
@@ -125,7 +125,7 @@ public class Manufacturer {
         }
         
         // Re-marshal the file
-        jaxbMarshaller.marshal(orders, new File("orders.xml"));
+        jaxbMarshaller.marshal(orders, new File("C:\\Users\\Kayleigh\\workspace\\scotch-box\\public\\SOEN487\\Assignment1\\Exercise4\\orders.xml"));
         
         // Return
         return success;

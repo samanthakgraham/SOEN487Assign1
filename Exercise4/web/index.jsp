@@ -1,4 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList" %>
+<%@page import="Warehouse.*" %>
+<%@page import="Manufacturer.*" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -40,6 +43,35 @@
                     <%=(String)request.getAttribute("error")%>
                 </p>                
                 <%
+            }            
+            if((ArrayList)request.getAttribute("shippingResult") != null) {
+                ArrayList<ArrayList> shippingResult = (ArrayList)request.getAttribute("shippingResult");
+                ArrayList<WarehouseItem> shippedItems = shippingResult.get(0);
+                ArrayList<WarehouseItem> notShippedItems = shippingResult.get(1);
+
+                if(!shippedItems.isEmpty()) {
+                %>
+                <h3>The following products were successfully shipped:</h3>
+                <%
+                    for(WarehouseItem item : shippedItems) {
+                        String productName = item.getProduct().getManufacturerName() + " " + item.getProduct().getProductType();
+                        %>
+                        <p><%=productName%></p>
+                        <%
+                    }
+                }
+
+                if(!notShippedItems.isEmpty()) {
+                %>
+                    <h3>The following products could not be shipped due to lack of stock; they have been ordered from the manufacturer:</h3>
+                <%
+                    for(WarehouseItem item : notShippedItems) {
+                        String productName = item.getProduct().getManufacturerName() + " " + item.getProduct().getProductType();
+                        %>
+                        <p><%=productName%></p>
+                        <%
+                    }
+                }
             }
             %>
         </div>

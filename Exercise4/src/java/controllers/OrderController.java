@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
 import java.util.ArrayList;
 import java.util.List;
-import Warehouse.Warehouse;
+import javax.xml.bind.JAXBException;
+import Warehouse.*;
+import Manufacturer.*;
 
 /**
  *
@@ -27,9 +29,10 @@ public class OrderController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {        
         RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+        List shippingResultList = null;
         
         // Keep track of what's in the order
-        ArrayList<String[]> order = new ArrayList<String[]>();
+        ArrayList<WarehouseItem> order = new ArrayList<WarehouseItem>();
         
         // Get the products requested (checkboxes)
         String products[] = request.getParameterValues("product[]");
@@ -51,17 +54,30 @@ public class OrderController extends HttpServlet {
                     rd.forward(request, response);
                 } else {
                     // Otherwise, add the product and its specified quantity to the order
-                    String[] orderLine = new String[0];
-                    orderLine[0] = product;
-                    orderLine[1] = productQuantity;
-                    
-                    order.add(orderLine);
-                    
-                    // Attempt to ship
-                    Warehouse wr = new Warehouse();
-                    List shippingResultList = wr.shipGoods(order);
+                    try {
+                        Manufacturer manu = new Manufacturer();
+                        Product productObject = manu.getProductInfo(product);
+                        WarehouseItem wi = new WarehouseItem(productObject, Integer.parseInt(productQuantity));
+                        System.out.println("Adding " + wi.getProduct().getProductType() + " to the order");
+                        order.add(wi); 
+                    } catch(JAXBException e) {
+                        System.out.println(e.toString());
+                    }                                       
                 }
             }
+            
+            // Attempt to ship
+            Warehouse wr = new Warehouse();
+            try {
+                shippingResultList = wr.shipGoods(order);
+                
+                // Return lists to user
+                request.setAttribute("shippingResult", shippingResultList);
+                rd.forward(request, response);
+            } catch(JAXBException e) {
+                System.out.println(e.toString());
+            }
+            
         }
     }
 }

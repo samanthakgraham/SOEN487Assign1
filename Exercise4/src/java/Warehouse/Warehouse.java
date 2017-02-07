@@ -12,6 +12,7 @@ import javax.xml.bind.Unmarshaller;
 import java.util.Date;
 
 import Manufacturer.*;
+import java.util.Iterator;
 import javax.xml.bind.Marshaller;
 
 /**
@@ -96,24 +97,33 @@ public class Warehouse {
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
         Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
         WarehouseItems inventory = (WarehouseItems) jaxbUnmarshaller.unmarshal(new File("C:\\Users\\Kayleigh\\workspace\\scotch-box\\public\\SOEN487\\Assignment1\\Exercise4\\inventory.xml"));
-
+        WarehouseItems updatedItems = new WarehouseItems();
+        updatedItems.setItems(new ArrayList<WarehouseItem>());
+        
+        Iterator<WarehouseItem> iter = inventory.getItems().iterator();
+        
         // Go thru inventory items
-        for (WarehouseItem item : inventory.getItems()) {
-            // If the quantity of an item on hand is less than the defined threshold
-            if (item.getQuantity() < MIN_THRESHOLD) {
-                // Remove item from list
-                inventory.getItems().remove(item);
+        while (iter.hasNext()) {
+            WarehouseItem item = iter.next();            
 
+            if (item.getQuantity() < MIN_THRESHOLD) {
+                iter.remove();
+                
                 // Order the item from the manufacturer                
-                PurchaseOrder order = new PurchaseOrder(new Date().toString(), "Warehouse A", item.getProduct(), 150, item.getProduct().getUnitPrice(), false);
+                PurchaseOrder order = new PurchaseOrder(Long.toString(new Date().getTime()), "Warehouse A", item.getProduct(), 150, item.getProduct().getUnitPrice(), false);
                 Manufacturer manu = new Manufacturer();
 
                 // If the order was successful
                 if (manu.processPurchaseOrder(order)) {
                     // Update item quantity
                     item.setQuantity(item.getQuantity() + 150);
+                    updatedItems.getItems().add(item);
                 }
-            }
+            }                                                
+        }
+        
+        for(WarehouseItem it : updatedItems.getItems()) {
+            inventory.getItems().add(it);
         }
 
         // Re-marshal the file

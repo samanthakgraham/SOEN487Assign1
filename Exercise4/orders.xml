@@ -1,39 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ns3:PurchaseOrders xmlns:ns2="http://www.example.com/a" xmlns:ns3="http://www.example.com">
     <ns2:purchaseOrder>
-        <orderNum>1</orderNum>
-        <customerRef>1</customerRef>
+        <orderNum>1486427326127</orderNum>
+        <customerRef>Warehouse A</customerRef>
         <product>
-            <manufacturerName>Brand2</manufacturerName>
-            <productType>DVD Player</productType>
-            <unitPrice>75.0</unitPrice>
+            <manufacturerName>Brand3</manufacturerName>
+            <productType>video camera</productType>
+            <unitPrice>150.0</unitPrice>
         </product>
-        <quantity>1</quantity>
-        <unitPrice>75.0</unitPrice>
-        <paid>false</paid>
-    </ns2:purchaseOrder>
-    <ns2:purchaseOrder>
-        <orderNum>2</orderNum>
-        <customerRef>2</customerRef>
-        <product>
-            <manufacturerName>Brand2</manufacturerName>
-            <productType>DVD Player</productType>
-            <unitPrice>75.0</unitPrice>
-        </product>
-        <quantity>2</quantity>
+        <quantity>150</quantity>
         <unitPrice>150.0</unitPrice>
-        <paid>false</paid>
-    </ns2:purchaseOrder>
-    <ns2:purchaseOrder>
-        <orderNum>3</orderNum>
-        <customerRef>1</customerRef>
-        <product>
-            <manufacturerName>Brand1</manufacturerName>
-            <productType>TV</productType>
-            <unitPrice>500.0</unitPrice>
-        </product>
-        <quantity>1</quantity>
-        <unitPrice>500.0</unitPrice>
         <paid>false</paid>
     </ns2:purchaseOrder>
 </ns3:PurchaseOrders>

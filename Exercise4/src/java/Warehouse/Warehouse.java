@@ -9,11 +9,10 @@ import javax.jws.WebParam;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.Marshaller;
 import java.util.Date;
 
 import Manufacturer.*;
-import java.util.Iterator;
-import javax.xml.bind.Marshaller;
 
 /**
  *
@@ -23,6 +22,7 @@ import javax.xml.bind.Marshaller;
 public class Warehouse {
 
     private final int MIN_THRESHOLD = 5;
+    private final int ORDER_QUANTITY = 150;
 
     /**
      * Ships items in the given list to the customer if available
@@ -97,33 +97,27 @@ public class Warehouse {
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
         Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
         WarehouseItems inventory = (WarehouseItems) jaxbUnmarshaller.unmarshal(new File("C:\\Users\\Kayleigh\\workspace\\scotch-box\\public\\SOEN487\\Assignment1\\Exercise4\\inventory.xml"));
-        WarehouseItems updatedItems = new WarehouseItems();
-        updatedItems.setItems(new ArrayList<WarehouseItem>());
-        
-        Iterator<WarehouseItem> iter = inventory.getItems().iterator();
-        
-        // Go thru inventory items
-        while (iter.hasNext()) {
-            WarehouseItem item = iter.next();            
 
-            if (item.getQuantity() < MIN_THRESHOLD) {
-                iter.remove();
+        // Go thru the inventory
+        for(WarehouseItem item: inventory.getItems()) {
+            // If we need to order more
+            if (item.getQuantity() < MIN_THRESHOLD) {                                
+                // Order the item from the manufacturer
+                String orderNum = Long.toString(new Date().getTime());
+                float orderTotal = item.getProduct().getUnitPrice() * ORDER_QUANTITY;
                 
-                // Order the item from the manufacturer                
-                PurchaseOrder order = new PurchaseOrder(Long.toString(new Date().getTime()), "Warehouse A", item.getProduct(), 150, item.getProduct().getUnitPrice(), false);
+                PurchaseOrder order = new PurchaseOrder(orderNum, "Warehouse A", item.getProduct(), ORDER_QUANTITY, orderTotal, false);
                 Manufacturer manu = new Manufacturer();
 
                 // If the order was successful
                 if (manu.processPurchaseOrder(order)) {
-                    // Update item quantity
-                    item.setQuantity(item.getQuantity() + 150);
-                    updatedItems.getItems().add(item);
+                    // Update item quantity in the inventory                    
+                    item.setQuantity(item.getQuantity() + ORDER_QUANTITY);
+                    
+                    // Pay for the order
+                    manu.receivePayment(orderNum, orderTotal);
                 }
-            }                                                
-        }
-        
-        for(WarehouseItem it : updatedItems.getItems()) {
-            inventory.getItems().add(it);
+            } 
         }
 
         // Re-marshal the file

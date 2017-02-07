@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <ns3:PurchaseOrders xmlns:ns2="http://www.example.com/a" xmlns:ns3="http://www.example.com">
     <ns2:purchaseOrder>
-        <orderNum>1486427326127</orderNum>
+        <orderNum>1486429063637</orderNum>
         <customerRef>Warehouse A</customerRef>
         <product>
             <manufacturerName>Brand3</manufacturerName>
@@ -9,7 +9,7 @@
             <unitPrice>150.0</unitPrice>
         </product>
         <quantity>150</quantity>
-        <unitPrice>150.0</unitPrice>
-        <paid>false</paid>
+        <unitPrice>22500.0</unitPrice>
+        <paid>true</paid>
     </ns2:purchaseOrder>
 </ns3:PurchaseOrders>

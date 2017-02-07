@@ -113,15 +113,8 @@ public class Manufacturer {
         for(PurchaseOrder order: orders.getOrders()) {
             // Find the one we want
             if(order.getOrderNum().equals(orderNum) && totalPrice == order.getUnitPrice()) {
-                // Remove it from the list
-                orders.getOrders().remove(order);
-                
                 // Change its status
-                order.setPaidStatus(true);
-                
-                // Put it back in the list
-                orders.getOrders().add(order);
-                
+                order.setPaidStatus(true);                
                 success = true;
             }
         }

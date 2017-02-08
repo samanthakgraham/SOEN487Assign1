@@ -1,6 +1,5 @@
 package Manufacturer;
 
-import static Manufacturer.PurchaseOrderMarshalling.orders;
 import java.io.File;
 import java.util.ArrayList;
 import javax.jws.WebService;

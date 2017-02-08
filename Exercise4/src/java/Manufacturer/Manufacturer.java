@@ -17,6 +17,8 @@ import javax.xml.bind.Unmarshaller;
  */
 @WebService(serviceName = "Manufacturer")
 public class Manufacturer {
+    private final String PRODUCT_FILE_LOCATION = "C:\\Users\\Kayleigh\\workspace\\scotch-box\\public\\SOEN487\\Assignment1\\Exercise4\\products.xml";
+    private final String ORDER_FILE_LOCATION = "C:\\Users\\Kayleigh\\workspace\\scotch-box\\public\\SOEN487\\Assignment1\\Exercise4\\orders.xml";
 
     /**
      * Processes a purchase order
@@ -31,7 +33,7 @@ public class Manufacturer {
         // Get products by unmarshalling the file
         JAXBContext jaxbContextProducts = JAXBContext.newInstance(Products.class);
         Unmarshaller jaxbUnmarshaller = jaxbContextProducts.createUnmarshaller();
-        Products products = (Products) jaxbUnmarshaller.unmarshal(new File("C:\\Users\\Kayleigh\\workspace\\scotch-box\\public\\SOEN487\\Assignment1\\Exercise4\\products.xml"));
+        Products products = (Products) jaxbUnmarshaller.unmarshal(new File(PRODUCT_FILE_LOCATION));
         
         // Go thru products
         for (Product product : products.getProducts()) {
@@ -55,7 +57,7 @@ public class Manufacturer {
                     JAXBContext jaxbContextPurchaseOrders = JAXBContext.newInstance(PurchaseOrders.class);
                     Marshaller jaxbMarshaller = jaxbContextPurchaseOrders.createMarshaller();
                     jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);                    
-                    jaxbMarshaller.marshal(ordersToMarshal, new File("C:\\Users\\Kayleigh\\workspace\\scotch-box\\public\\SOEN487\\Assignment1\\Exercise4\\orders.xml"));
+                    jaxbMarshaller.marshal(ordersToMarshal, new File(ORDER_FILE_LOCATION));
                 }
                 
                 // Break out of the for loop
@@ -77,7 +79,7 @@ public class Manufacturer {
         // Get the list of products by unmarshalling
         JAXBContext jaxbContext = JAXBContext.newInstance(Products.class);
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-        Products prods = (Products) jaxbUnmarshaller.unmarshal(new File("C:\\Users\\Kayleigh\\workspace\\scotch-box\\public\\SOEN487\\Assignment1\\Exercise4\\products.xml"));
+        Products prods = (Products) jaxbUnmarshaller.unmarshal(new File(PRODUCT_FILE_LOCATION));
         
         // Go thru the products
         for (Product prod : prods.getProducts()) {

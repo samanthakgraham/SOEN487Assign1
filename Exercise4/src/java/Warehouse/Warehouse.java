@@ -23,6 +23,7 @@ public class Warehouse {
 
     private final int MIN_THRESHOLD = 5;
     private final int ORDER_QUANTITY = 150;
+    private final String INVENTORY_FILE_LOCATION = "C:\\Users\\Kayleigh\\workspace\\scotch-box\\public\\SOEN487\\Assignment1\\Exercise4\\inventory.xml";
 
     /**
      * Ships items in the given list to the customer if available
@@ -37,7 +38,7 @@ public class Warehouse {
         JAXBContext jaxbContext = JAXBContext.newInstance(WarehouseItems.class);
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
         Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-        WarehouseItems inventory = (WarehouseItems) jaxbUnmarshaller.unmarshal(new File("C:\\Users\\Kayleigh\\workspace\\scotch-box\\public\\SOEN487\\Assignment1\\Exercise4\\inventory.xml"));
+        WarehouseItems inventory = (WarehouseItems) jaxbUnmarshaller.unmarshal(new File(INVENTORY_FILE_LOCATION));
 
         // Lists we'll need
         ArrayList<WarehouseItem> shippedItems = new ArrayList<WarehouseItem>();
@@ -54,12 +55,8 @@ public class Warehouse {
                     existsInInventory = true;
 
                     if (inventoryItem.getQuantity() >= orderedItem.getQuantity()) {
-                        // We need to update its quantity in inventory. Remove it from inventory
-                        inventory.getItems().remove(inventoryItem);
                         // Update its quantity
                         inventoryItem.setQuantity(inventoryItem.getQuantity() - orderedItem.getQuantity());
-                        // Put it back in the inventory
-                        inventory.getItems().add(inventoryItem);
 
                         // Ship it                        
                         shippedItems.add(orderedItem);
@@ -77,7 +74,7 @@ public class Warehouse {
         }
 
         // Re-marshal the file
-        jaxbMarshaller.marshal(inventory, new File("C:\\Users\\Kayleigh\\workspace\\scotch-box\\public\\SOEN487\\Assignment1\\Exercise4\\inventory.xml"));
+        jaxbMarshaller.marshal(inventory, new File(INVENTORY_FILE_LOCATION));
 
         // Replenish inventory
         replenish();
@@ -96,7 +93,7 @@ public class Warehouse {
         JAXBContext jaxbContext = JAXBContext.newInstance(WarehouseItems.class);
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
         Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-        WarehouseItems inventory = (WarehouseItems) jaxbUnmarshaller.unmarshal(new File("C:\\Users\\Kayleigh\\workspace\\scotch-box\\public\\SOEN487\\Assignment1\\Exercise4\\inventory.xml"));
+        WarehouseItems inventory = (WarehouseItems) jaxbUnmarshaller.unmarshal(new File(INVENTORY_FILE_LOCATION));
 
         // Go thru the inventory
         for(WarehouseItem item: inventory.getItems()) {
@@ -121,6 +118,6 @@ public class Warehouse {
         }
 
         // Re-marshal the file
-        jaxbMarshaller.marshal(inventory, new File("C:\\Users\\Kayleigh\\workspace\\scotch-box\\public\\SOEN487\\Assignment1\\Exercise4\\inventory.xml"));
+        jaxbMarshaller.marshal(inventory, new File(INVENTORY_FILE_LOCATION));
     }
 }
